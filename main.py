@@ -4,37 +4,15 @@ import random
 
 today = date.today()
 day = "I love gay sex"
-if today.month == 1:
-    day = str(today.day) + " января"
-if today.month == 2:
-    day = str(today.day) + " февраля"
-if today.month == 3:
-    day = str(today.day) + " марта"
-if today.month == 4:
-    day = str(today.day) + " апреля"
-if today.month == 5:
-    day = str(today.day) + " мая"
-if today.month == 6:
-    day = str(today.day) + " июня"
-if today.month == 7:
-    day = str(today.day) + " июля"
-if today.month == 8:
-    day = str(today.day) + " августа"
-if today.month == 9:
-    day = str(today.day) + " сентября"
-if today.month == 10:
-    day = str(today.day) + " октября"
-if today.month == 11:
-    day = str(today.day) + " ноября"
-if today.month == 12:
-    day = str(today.day) + " декабря"
+Month = [" января", " февраля", " марта", " апреля", " мая", " июня", " июля", " августа", " сентября", " октября", " ноября", " декабря"]
+day = str(today.day) + Month[today.month - 1]
 
 words1 = ("Сегодня " + day)
 words2 = "Мы поздравляем с Днём Рождения:"
 print("Сколько людей мы сегодня поздравляем?")
 ch = int(input())
 print("Кого сегодня поздравляем?")
-print("Введите имя и фамилию в ВИНИТЕЛЬНОМ падеже и класс с буквой.")
+print("Введите данные человека , которого поздравляете , в ВИНИТЕЛЬНОМ падеже.")
 print("Класс с буквой ученика или фамилию преподавателя отделяйте переводом строки.")
 print("Данные разных людей разделяйте переводом строки.")
 
@@ -75,75 +53,24 @@ for i in range(0, ch):
     People.append(people1)
     Class.append(class1)
 
-if ch == 1:
-    tablx = [500]
-    tably = [300]
-    textx1 = [725]
-    texty1 = [350]
-    textx2 = [725]
-    texty2 = [410]
-    giftx = [200, 1000, 500]
-    gifty = [350, 450, 550]
+TABLX = [[], [500], [200, 900], [200, 900, 550], [10, 700, 900, 450], [10, 900, 10, 830, 460], [10, 900, 10, 830, 360, 650]]
+TABLY = [[], [300], [250, 700], [250, 700, 475], [200, 800, 200, 575], [200, 200, 650, 740, 875], [200, 200, 650, 740, 875, 470]]
+TEXTX1 = [[], [725], [425, 1125], [425, 1125, 775], [235, 925, 1125, 675], [235, 1125, 235, 1055, 685], [235, 1125, 235, 1055, 585, 875]]
+TEXTY1 = [[], [350], [300, 750], [300, 750, 525], [250, 850, 250, 620], [250, 250, 700, 790, 925], [250, 250, 700, 790, 925, 520]]
+TEXTX2 = [[], [725], [425, 1125], [425, 1125, 775], [235, 925, 1125, 675], [235, 1125, 235, 1055, 685], [235, 1125, 235, 1055, 585, 875]]
+TEXTY2 = [[], [410], [360, 810], [360, 810, 585], [310, 910, 310, 685], [310, 310, 760, 850, 985], [310, 310, 760, 850, 985, 580]]
+GIFTX = [[], [200, 1000, 500], [200, 1000, 500], [200, 550, 1100, 750], [600, 250, 1150, 150], [500, 500, 1150, 200], [500, 500, 1150, 200]]
+GIFTY = [[], [350, 450, 550], [450, 250, 600], [450, 750, 450, 200], [250, 750, 450, 375], [200, 650, 330, 380], [200, 650, 330, 380]]
 
-if ch == 2:
-    tablx = [200, 900]
-    tably = [250, 700]
-    textx1 = [425, 1125]
-    texty1 = [300, 750]
-    textx2 = [425, 1125]
-    texty2 = [360, 810]
-    giftx = [200, 1000, 550]
-    gifty = [450, 250, 600]
-
-if ch == 3:
-    tablx = [200, 900, 550]
-    tably = [250, 700, 475]
-    textx1 = [425, 1125, 775]
-    texty1 = [300, 750, 525]
-    textx2 = [425, 1125, 775]
-    texty2 = [360, 810, 585]
-    giftx = [200, 550, 1100, 750]
-    gifty = [450, 750, 450, 200]
-
-if ch == 4:
-    tablx = [10, 700, 900, 450]
-    tably = [200, 800, 200, 575]
-    textx1 = [235, 925, 1125, 675]
-    texty1 = [250, 850, 250, 620]
-    textx2 = [235, 925, 1125, 675]
-    texty2 = [310, 910, 310, 685]
-    giftx = [600, 250, 1150, 150]
-    gifty = [250, 750, 450, 375]
-
-if ch == 5:
-    tablx = [10, 900, 10, 830, 460]
-    tably = [200, 200, 650, 740, 875]
-    textx1 = [235, 1125, 235, 1055, 685]
-    texty1 = [250, 250, 700, 790, 925]
-    textx2 = [235, 1125, 235, 1055, 685]
-    texty2 = [310, 310, 760, 850, 985]
-    giftx = [500, 500, 1150, 200]
-    gifty = [200, 650, 330, 380]
-
-if ch == 6:
-    tablx = [10, 900, 10, 830, 360, 650]
-    tably = [200, 200, 650, 740, 875, 470]
-    textx1 = [235, 1125, 235, 1055, 585, 875]
-    texty1 = [250, 250, 700, 790, 925, 520]
-    textx2 = [235, 1125, 235, 1055, 585, 875]
-    texty2 = [310, 310, 760, 850, 985, 580]
-    giftx = [500, 500, 1150, 200]
-    gifty = [200, 650, 330, 380]
 
 for i in range(0, ch):
-    our_fon.paste(tabl, (tablx[i], tably[i]))
-    date.text((textx1[i], texty1[i]), People[i], (0, 0, 0), anchor="ms", font=font2)
-    date.text((textx2[i], texty2[i]), Class[i], (0, 0, 0), anchor="ms", font=font2)
+    our_fon.paste(tabl, (TABLX[ch][i], TABLY[ch][i]))
+    date.text((TEXTX1[ch][i], TEXTY1[ch][i]), People[i], (0, 0, 0), anchor="ms", font=font2)
+    date.text((TEXTX2[ch][i], TEXTY2[ch][i]), Class[i], (0, 0, 0), anchor="ms", font=font2)
 for i in range(0, len(giftx)):
     present = random.choice(mask)
-    our_fon.paste(present, (giftx[i], gifty[i]))
+    our_fon.paste(present, (GIFTX[ch][i], GIFTY[ch][i]))
     mask.remove(present)
 
 our_fon.show()
 our_fon.save("Картинка1.jpg")
-
