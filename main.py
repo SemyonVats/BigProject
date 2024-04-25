@@ -1,20 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 from datetime import date
 import random
-
-today = date.today()
-day = "I love gay sex"
-Month = [" января", " февраля", " марта", " апреля", " мая", " июня", " июля", " августа", " сентября", " октября", " ноября", " декабря"]
-day = str(today.day) + Month[today.month - 1]
-
-words1 = ("Сегодня " + day)
-words2 = "Мы поздравляем с Днём Рождения:"
-print("Сколько людей мы сегодня поздравляем?")
-ch = int(input())
-print("Кого сегодня поздравляем?")
-print("Введите данные человека , которого поздравляете , в ВИНИТЕЛЬНОМ падеже.")
-print("Класс с буквой ученика или фамилию преподавателя отделяйте переводом строки.")
-print("Данные разных людей разделяйте переводом строки.")
+import pandas as pd
 
 our_fon = Image.open('Фон1.jpg')
 tabl = Image.open('Табл.jpg')
@@ -28,30 +15,65 @@ font1 = ImageFont.truetype("comicz.ttf", 65)
 font2 = ImageFont.truetype("ComicSansMS3.ttf", 35)
 mask = [tort1, tort2, tort3, podarok1, podarok2, podarok3]
 
+today = date.today()
+we_need = ''
+Month = [" января", " февраля", " марта", " апреля", " мая", " июня", " июля", " августа", " сентября", " октября", " ноября", " декабря"]
+day = str(today.day) + Month[today.month - 1]
+words1 = ("Сегодня " + day)
+words2 = "День Рождения празднуют:"
+
 date = ImageDraw.Draw(our_fon)
 date.text((700, 80), words1, (0, 0, 0), anchor="ms", font=font1)
 date.text((700, 150), words2, (0, 0, 0), anchor="ms", font=font1)
 
+xl = pd.read_excel('Table.xlsx')
+name = xl['Имя'].tolist()
+surname = xl['Фамилия'].tolist()
+patronymic = xl['Отчество'].tolist()
+durka = xl['Класс'].tolist()
+Date = xl['Дата рождения'].tolist()
+NormDate = []
+
+for i in range(0, len(Date)):
+    Date[i] = str(Date[i])
+
+for i in range(0, len(Date)):
+    skip = []
+    for j in range(0, len(Date[i])):
+        if((ord(Date[i][j]) >= ord('0')) and (ord(Date[i][j]) <= ord('9'))):
+            skip.append(Date[i][j])
+
+    for i in range(0,6):
+        skip.pop()
+    skip.reverse()
+    for i in range(0,4):
+        skip.pop()
+    skip.reverse()
+    (skip[0] , skip[2]) = (skip[2] , skip[0])
+    (skip[1], skip[3]) = (skip[3], skip[1])
+
+    NormDate.append(skip[0] + skip[1] + '.' + skip[2] + skip[3])
+
+
+if (len(str(today.month)) == 1):
+    we_need = str(today.day) + '.0' + str(today.month)
+else:
+    we_need = str(today.day) + '.' + str(today.month)
+
+#we_need = "30.11"
+
 People = []
 Class = []
-tablx = []
-tably = []
-textx1 = []
-texty1 = []
-textx2 = []
-texty2 = []
-giftx = []
-gifty = []
+for i in range(0, len(NormDate)):
+    if (NormDate[i] == we_need):
+        if(durka[i] == 'Учитель'):
+            People.append(name[i] + " " + patronymic[i])
+            Class.append(surname[i])
+        else:
+            People.append(name[i] + " " + surname[i])
+            Class.append(durka[i])
+ch = len(People)
 
-for i in range(0, ch):
-    people1 = input()
-    class1 = input()
-    for j in range(0, len(class1)):
-        if (class1[j] >= '0' and class1[j] <= '9'):
-            class1 = class1 + " класс"
-            break
-    People.append(people1)
-    Class.append(class1)
 
 TABLX = [[], [500], [200, 900], [200, 900, 550], [10, 700, 900, 450], [10, 900, 10, 830, 460], [10, 900, 10, 830, 360, 650]]
 TABLY = [[], [300], [250, 700], [250, 700, 475], [200, 800, 200, 575], [200, 200, 650, 740, 875], [200, 200, 650, 740, 875, 470]]
@@ -67,10 +89,11 @@ for i in range(0, ch):
     our_fon.paste(tabl, (TABLX[ch][i], TABLY[ch][i]))
     date.text((TEXTX1[ch][i], TEXTY1[ch][i]), People[i], (0, 0, 0), anchor="ms", font=font2)
     date.text((TEXTX2[ch][i], TEXTY2[ch][i]), Class[i], (0, 0, 0), anchor="ms", font=font2)
-for i in range(0, len(giftx)):
+
+for i in range(0, len(GIFTX[ch])):
     present = random.choice(mask)
     our_fon.paste(present, (GIFTX[ch][i], GIFTY[ch][i]))
     mask.remove(present)
 
 our_fon.show()
-our_fon.save("Картинка1.jpg")
+our_fon.save(f"{we_need}.jpg")
