@@ -6,16 +6,16 @@ import pandas as pd
 import time
 
 #Объявление картинок
-our_fon = Image.open('Фон1.jpg')
-tabl = Image.open('Табл.jpg')
-tort1 = Image.open('Торт1.jpg')
-tort2 = Image.open('Торт2.jpg')
-tort3 = Image.open('Торт3.jpg')
-podarok1 = Image.open('Подарок1.jpg')
-podarok2 = Image.open('Подарок2.jpg')
-podarok3 = Image.open('Подарок3.jpg')
-font1 = ImageFont.truetype("comicz.ttf", 65)
-font2 = ImageFont.truetype("ComicSansMS3.ttf", 27)
+our_fon = Image.open('School project\Фон1.jpg')
+tabl = Image.open('School project\Табл.jpg')
+tort1 = Image.open('School project\Торт1.jpg')
+tort2 = Image.open('School project\Торт2.jpg')
+tort3 = Image.open('School project\Торт3.jpg')
+podarok1 = Image.open('School project\Подарок1.jpg')
+podarok2 = Image.open('School project\Подарок2.jpg')
+podarok3 = Image.open('School project\Подарок3.jpg')
+font1 = ImageFont.truetype("School project\comicz.ttf", 65)
+font2 = ImageFont.truetype("School project\ComicSansMS3.ttf", 27)
 mask = [tort1, tort2, tort3, podarok1, podarok2, podarok3]
 
 #Узнаём сегодняшнюю дату
@@ -25,7 +25,7 @@ Month = [" января", " февраля", " марта", " апреля", " �
 day = str(today.day) + Month[today.month - 1]
 
 #Читаем таблицу в массивы
-xl = pd.read_excel('Table.xlsx')
+xl = pd.read_excel('School project\Table.xlsx')
 name = xl['Имя'].tolist()
 surname = xl['Фамилия'].tolist()
 patronymic = xl['Отчество'].tolist()
