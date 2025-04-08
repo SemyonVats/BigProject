@@ -53,12 +53,16 @@ for i in range(0, len(Date)):
     NormDate.append(skip[0] + skip[1] + '.' + skip[2] + skip[3])
 
 #Костыль , чтобы месяц всегда был из 2 цифр
-if (len(str(today.month)) == 1):
-    we_need = str(today.day) + '.0' + str(today.month)
+if (len(str(today.month)) == 1) :
+    we_need += ('0' + str(today.day))
 else:
-    we_need = str(today.day) + '.' + str(today.month)
+    we_need += str(today.day)
 
-we_need = "08.04"
+if (len(str(today.month)) == 1):
+    we_need += ('.0' + str(today.month))
+else:
+    we_need += ('.' + str(today.month))
+
 
 #Пошло объявление именинников
 People = []
