@@ -58,7 +58,7 @@ if (len(str(today.month)) == 1):
 else:
     we_need = str(today.day) + '.' + str(today.month)
 
-#we_need = "05.01"
+we_need = "08.04"
 
 #Пошло объявление именинников
 People = []
@@ -76,7 +76,7 @@ ch = len(People)
 #Проверка количества именинников
 if ch > 6:
     print("Именинников > 6 , программа не справляется :(")
-    time.sleep(10000)
+    time.sleep(10)
     exit()
 
 #Шапка с учётом количества именинников
