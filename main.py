@@ -5,9 +5,12 @@ import random
 import pandas as pd
 import time
 
+print("Введите на сколько дней вперёд вы хотите нагенерировать поздравления ")
+n = int(input())
+
 #Узнаём сегодняшнюю дату
 today = date.today()
-for i in range (0, 3):
+for i in range (0, n):
 
     #Объявление картинок
     our_fon = Image.open('School project\Фон1.jpg')
@@ -22,7 +25,6 @@ for i in range (0, 3):
     font2 = ImageFont.truetype("School project\ComicSansMS3.ttf", 27)
     mask = [tort1, tort2, tort3, podarok1, podarok2, podarok3]
 
-    today = today + timedelta(days=1)
     we_need = ''
     Month = [" января", " февраля", " марта", " апреля", " мая", " июня", " июля", " августа", " сентября", " октября", " ноября", " декабря"]
     day = str(today.day) + Month[today.month - 1]
@@ -38,17 +40,16 @@ for i in range (0, 3):
 
     for i in range(0, len(Date)):
         Date[i] = str(Date[i])
-
     #ИДЕЙНЫЙ перевод формата ПОЛНОЙ ДАТЫ  в формат ЧИСЛО.МЕСЯЦ
     for i in range(0, len(Date)):
         skip = []
         for j in range(0, len(Date[i])):
             if((ord(Date[i][j]) >= ord('0')) and (ord(Date[i][j]) <= ord('9'))):
-                skip.append(Date[i][j])
-        for i in range(0,6):
+                skip.append(Date[i][j])   
+        for j in range(0,6):
             skip.pop()
         skip.reverse()
-        for i in range(0,4):
+        for j in range(0,4):
             skip.pop()
         skip.reverse()
         (skip[0] , skip[2]) = (skip[2] , skip[0])
@@ -121,5 +122,6 @@ for i in range (0, 3):
         our_fon.paste(present, (GIFTX[ch][i], GIFTY[ch][i]))
         mask.remove(present)
 
-    our_fon.show()
+    #our_fon.show()
     our_fon.save(f"{we_need}.jpg")
+    today = today + timedelta(days=1)
