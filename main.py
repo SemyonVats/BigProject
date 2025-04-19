@@ -5,6 +5,7 @@ import random
 import pandas as pd
 import time
 
+
 print("Введите на сколько дней вперёд вы хотите нагенерировать поздравления ")
 n = int(input())
 
@@ -21,8 +22,8 @@ for i in range (0, n):
     podarok1 = Image.open('School project\Подарок1.jpg')
     podarok2 = Image.open('School project\Подарок2.jpg')
     podarok3 = Image.open('School project\Подарок3.jpg')
-    font1 = ImageFont.truetype("School project\comicz.ttf", 65)
-    font2 = ImageFont.truetype("School project\ComicSansMS3.ttf", 27)
+    font1 = ImageFont.truetype(r"School project\comicz.ttf", 65)
+    font2 = ImageFont.truetype(r"School project\ComicSansMS3.ttf", 27)
     mask = [tort1, tort2, tort3, podarok1, podarok2, podarok3]
 
     we_need = ''
@@ -30,7 +31,7 @@ for i in range (0, n):
     day = str(today.day) + Month[today.month - 1]
 
     #Читаем таблицу в массивы
-    xl = pd.read_excel('School project\Table.xlsx')
+    xl = pd.read_excel(r'School project\Table.xlsx')
     name = xl['Имя'].tolist()
     surname = xl['Фамилия'].tolist()
     patronymic = xl['Отчество'].tolist()
